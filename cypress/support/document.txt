@@ -1,0 +1,11 @@
+Login to 'https://www.saucedemo.com/'
+Provide valid username and password, Click Login
+Verify the Login page successful by validating the URL change
+Identify the product to be purchased and Click 'Add to Cart' button
+Verify if the Cart counter reflects with the Quantity
+Click on Cart button to kick off the Checkout process
+Verify the displayed item and quantity before checking out
+Click on Checkout button
+Provide Checkout information First Name, Last Name and Postal Code (All Mandatory fields)
+Click Continue and then Finish
+Verify the Success message for purchase

@@ -1,0 +1,36 @@
+jobs:
+  - job: Cypress_e2e_tests
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    steps:
+      # Step 1: Install Node.js
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '22.x'
+        displayName: 'Install Node.js'
+
+      # Step 2: Install npm dependencies
+      - script: npm ci
+        displayName: 'Install npm dependencies'
+
+      # Step 3: Verify Cypress installation
+      - script: npm run cy:verify
+        displayName: 'Cypress verify'
+
+      # Step 4: Display Cypress info (optional)
+      - script: npm run cy:info
+        displayName: 'Cypress info'
+
+      # Step 5: Start the application and wait until it's ready
+      - script: |
+          npm run start &  
+          npx wait-on http://localhost:3000  
+        displayName: 'Start app and wait until it is ready'
+
+      # Step 6: Run Cypress tests with recording
+      - script: |
+          npx cypress run --record --ci-build-id $(Build.BuildNumber) --group "Azure CI"
+        displayName: 'Run Cypress tests'
+
+        
